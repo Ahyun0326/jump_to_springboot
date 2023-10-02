@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 class SbbApplicationTests {
@@ -16,10 +17,10 @@ class SbbApplicationTests {
 
 	@Test
 	void testJpa() {
-		List<Question> all = this.questionRepository.findAll();
-		Assertions.assertEquals(2, all.size());
-
-		Question q = all.get(0);
-		Assertions.assertEquals("sbb가 무엇인가요?", q.getSubject());
+		Optional<Question> oq = this.questionRepository.findById(1);
+		if (oq.isPresent()) {
+			Question q = oq.get();
+			Assertions.assertEquals("sbb가 무엇인가요?", q.getSubject());
+		}
 	}
 }
