@@ -13,7 +13,7 @@ import java.util.List;
 public class Question {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     @Column(length = 200)
     private String subject;
